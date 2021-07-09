@@ -20,7 +20,7 @@ class UploadController extends AbstractController
     }
 
     /**
-     * @Route("/upload", name="upload")
+     * @Route("/upload-flysystem", name="upload")
      * @param string $imageLocal
      * @param string $imageDestination
      * @return Response
