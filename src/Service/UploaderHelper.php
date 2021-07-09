@@ -3,8 +3,8 @@
 namespace App\Service;
 
 use League\Flysystem\Filesystem;
+use League\Flysystem\UnableToWriteFile;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\Filesystem\Exception\IOException;
 
 class UploaderHelper
 {
@@ -32,9 +32,9 @@ class UploaderHelper
         try {
             $this->filesystem->writeStream($imageDestination . $filename, $stream);
             fclose($stream);
-        } catch (IOException $e) {
+        } catch (UnableToWriteFile $e) {
             $this->logger->error('Failed to upload file: ' . $e->getMessage());
-            throw new IOException('Failed to upload file');
+            throw new UnableToWriteFile('Failed to upload file', Response::HTTP_BAD_REQUEST);
         }
     }
 }

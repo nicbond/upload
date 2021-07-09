@@ -4,6 +4,7 @@ namespace App\EventSubscriber;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 
 class ExceptionSubscriber implements EventSubscriberInterface
@@ -13,6 +14,10 @@ class ExceptionSubscriber implements EventSubscriberInterface
         $exception = $event->getThrowable();
         $message = $exception->getMessage();
         $code = $exception->getCode();
+
+        if ($code == 0) {
+            $code = Response::HTTP_BAD_REQUEST;
+        }
 
         $data = [
             'message' => $message
