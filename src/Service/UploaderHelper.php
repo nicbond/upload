@@ -33,7 +33,7 @@ class UploaderHelper
             $this->filesystem->writeStream($imageDestination . $filename, $stream);
             fclose($stream);
         } catch (IOException $e) {
-            $this->logger->error('Failed to upload file');
+            $this->logger->error('Failed to upload file: ' . $e->getMessage());
             throw new IOException('Failed to upload file');
         }
     }
