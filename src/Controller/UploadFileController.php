@@ -16,7 +16,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class UploadFileController extends AbstractController
 {
     /**
-     * @Route("/doUpload", name="do-upload")
      * @param Request $request
      * @param string $uploadDir
      * @param FileUploader $uploader
@@ -26,6 +25,7 @@ class UploadFileController extends AbstractController
      * @return Response
      * @throws \Exception
      */
+    #[Route('/doUpload', name: 'do-upload')]
     public function index(Request $request, string $uploadDir, FileUploader $uploader, FileJson $fileJson,Validator $validator, SerializerInterface $serializer): Response
     {
         $data = array();

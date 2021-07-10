@@ -20,11 +20,11 @@ class UploadController extends AbstractController
     }
 
     /**
-     * @Route("/upload-flysystem", name="upload")
      * @param string $imageLocal
      * @param string $imageDestination
      * @return Response
      */
+    #[Route('/upload-flysystem', name: 'upload')]
     public function index(string $imageLocal, string $imageDestination)
     {
         $this->uploaderHelper->uploads($imageLocal, $imageDestination);
